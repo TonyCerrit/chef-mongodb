@@ -206,9 +206,9 @@ define :mongodb_instance,
     rs_nodes = search(
       :node,
       "mongodb_clusterName:#{new_resource.replicaset['mongodb']['clusterName']} AND \
-       mongodb_isReplicaset:true AND \
-       mongodb_shardName:#{new_resource.replicaset['mongodb']['shardName']} AND \
-       chef_environment:#{new_resource.replicaset.chef_environment}"
+       mongodb_isReplicaset:true
+       # mongodb_shardName:#{new_resource.replicaset['mongodb']['shardName']} AND \
+       # chef_environment:#{new_resource.replicaset.chef_environment}"
     )
 
     ruby_block 'config_replicaset' do
