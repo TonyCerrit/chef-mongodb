@@ -25,7 +25,7 @@ define :mongodb_instance,
        :logpath       => '/var/log/mongodb/mongodb.log',
        :dbpath        => '/data',
        :configservers => [],
-       :replicaset    => nil,
+       :replicaset    => "rs01",
        :notifies      => [] do
 
   # TODO: this is the only remain use of params[:mongodb_type], is it still needed?
