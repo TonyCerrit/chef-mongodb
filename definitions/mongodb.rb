@@ -25,7 +25,7 @@ define :mongodb_instance,
        :logpath       => '/var/log/mongodb/mongodb.log',
        :dbpath        => '/data',
        :configservers => [],
-       :replicaset    => nil,
+       :replicaset    => "rs01",
        :notifies      => [] do
 
   # TODO: this is the only remain use of params[:mongodb_type], is it still needed?
@@ -65,7 +65,7 @@ define :mongodb_instance,
   new_resource.auto_configure_replicaset  = node['mongodb']['auto_configure']['replicaset']
   new_resource.auto_configure_sharding    = node['mongodb']['auto_configure']['sharding']
   new_resource.bind_ip                    = node['mongodb']['config']['bind_ip']
-  new_resource.clusterName               = node['mongodb']['clusterName']
+  new_resource.clusterName               = "rs01"
   new_resource.config                     = node['mongodb']['config']
   new_resource.dbconfig_file              = node['mongodb']['dbconfig_file']
   new_resource.dbconfig_file_template     = node['mongodb']['dbconfig_file_template']
@@ -203,7 +203,7 @@ define :mongodb_instance,
 
   # replicaset
   if new_resource.isReplicaset && new_resource.auto_configure_replicaset
-    rs_nodes = search(:node, "mongodb_clusterName": "#{new_resource.replicaset['mongodb']['clusterName']}", "mongodb_isReplicaset": "true" )
+    rs_nodes = search(:node, "mongodb_clusterName: #{new_resource.replicaset['mongodb']['clusterName']}", "mongodb_isReplicaset: true" )
        # mongodb_shard_name:#{new_resource.replicaset['mongodb']['shard_name']} AND \
        # chef_environment:#{new_resource.replicaset.chef_environment}"
 
