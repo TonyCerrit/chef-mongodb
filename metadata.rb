@@ -49,12 +49,12 @@ attribute 'mongodb/client_roles',
           :type => 'array',
           :default => []
 
-attribute 'mongodb/cluster_name',
+attribute 'mongodb/clusterName',
           :display_name => 'Cluster Name',
           :description => 'Name of the mongodb cluster, all nodes of a cluster must have the same name.',
           :default => ''
 
-attribute 'mongodb/shard_name',
+attribute 'mongodb/shardName',
           :display_name => 'Shard name',
           :description => 'Name of a mongodb shard',
           :default => 'default'

@@ -9,22 +9,22 @@
   },
   "normal": {
     "mongodb":{
-      "cluster_name": "default",
+      "clusterName": "default",
       "is_configserver": "true"
     },
-    "mongodb_cluster_name": "default",
+    "mongodb_clusterName": "default",
     "mongodb_is_configserver": "true"
   },
   "chef_type": "node",
   "default": {
     "mongodb":{
-      "cluster_name": "default",
+      "clusterName": "default",
       "is_configserver": "true"
     },
-    "mongodb_cluster_name": "default",
+    "mongodb_clusterName": "default",
     "mongodb_is_configserver": "true"
   },
-  "mongodb_cluster_name": "default",
+  "mongodb_clusterName": "default",
   "mongodb_is_configserver": "true",
   "override": {
   },

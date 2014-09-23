@@ -65,13 +65,13 @@ define :mongodb_instance,
   new_resource.auto_configure_replicaset  = node['mongodb']['auto_configure']['replicaset']
   new_resource.auto_configure_sharding    = node['mongodb']['auto_configure']['sharding']
   new_resource.bind_ip                    = node['mongodb']['config']['bind_ip']
-  new_resource.cluster_name               = "rs01"
+  new_resource.clusterName                = node['mongodb']['clusterName']
   new_resource.config                     = node['mongodb']['config']
   new_resource.dbconfig_file              = node['mongodb']['dbconfig_file']
   new_resource.dbconfig_file_template     = node['mongodb']['dbconfig_file_template']
   new_resource.init_dir                   = node['mongodb']['init_dir']
   new_resource.init_script_template       = node['mongodb']['init_script_template']
-  new_resource.is_replicaset              = node['mongodb']['is_replicaset']
+  new_resource.isReplicaset              = node['mongodb']['isReplicaset']
   new_resource.is_shard                   = node['mongodb']['is_shard']
   new_resource.is_configserver            = node['mongodb']['is_configserver']
   new_resource.is_mongos                  = node['mongodb']['is_mongos']
@@ -80,7 +80,7 @@ define :mongodb_instance,
   new_resource.replicaset_name            = node['mongodb']['config']['replSet']
   new_resource.port                       = node['mongodb']['config']['port']
   new_resource.root_group                 = node['mongodb']['root_group']
-  new_resource.shard_name                 = node['mongodb']['shard_name']
+  new_resource.shardName                 = node['mongodb']['shardName']
   new_resource.sharded_collections        = node['mongodb']['sharded_collections']
   new_resource.sysconfig_file             = node['mongodb']['sysconfig_file']
   new_resource.sysconfig_file_template    = node['mongodb']['sysconfig_file_template']
@@ -98,18 +98,18 @@ define :mongodb_instance,
   end
 
   # TODO(jh): reimplement using polymorphism
-  if new_resource.is_replicaset
+  if new_resource.isReplicaset
     if new_resource.replicaset_name
       # trust a predefined replicaset name
       replicaset_name = new_resource.replicaset_name
-    elsif new_resource.is_shard && new_resource.shard_name
+    elsif new_resource.is_shard && new_resource.shardName
       # for replicated shards we autogenerate
       # the replicaset name for each shard
-      replicaset_name = "rs_#{new_resource.shard_name}"
+      replicaset_name = "rs_#{new_resource.shardName}"
     else
       # Well shoot, we don't have a predefined name and we aren't
       # really sharded. If we want backwards compatibility, this should be:
-      #   replicaset_name = "rs_#{new_resource.shard_name}"
+      #   replicaset_name = "rs_#{new_resource.shardName}"
       # which with default values defaults to:
       #   replicaset_name = 'rs_default'
       # But using a non-default shard name when we're creating a default
@@ -195,19 +195,19 @@ define :mongodb_instance,
     new_resource.service_notifies.each do |service_notify|
       notifies :run, service_notify
     end
-    notifies :create, 'ruby_block[config_replicaset]' if new_resource.is_replicaset && new_resource.auto_configure_replicaset
+    notifies :create, 'ruby_block[config_replicaset]' if new_resource.isReplicaset && new_resource.auto_configure_replicaset
     notifies :create, 'ruby_block[config_sharding]', :immediately if new_resource.is_mongos && new_resource.auto_configure_sharding
       # we don't care about a running mongodb service in these cases, all we need is stopping it
     ignore_failure true if new_resource.name == 'mongodb'
   end
 
   # replicaset
-  if new_resource.is_replicaset && new_resource.auto_configure_replicaset
+  if new_resource.isReplicaset && new_resource.auto_configure_replicaset
     rs_nodes = search(
       :node,
-      "mongodb_cluster_name:#{new_resource.replicaset['mongodb']['cluster_name']}",
-       "mongodb_is_replicaset:true",
-       "mongodb_shard_name:#{new_resource.replicaset['mongodb']['shard_name']}",
+      "mongodb_clusterName:#{new_resource.replicaset['mongodb']['clusterName']}",
+       "mongodb_isReplicaset:true",
+       "mongodb_shardName:#{new_resource.replicaset['mongodb']['shardName']}",
        "chef_environment:#{new_resource.replicaset.chef_environment}"
     )
 
@@ -231,7 +231,7 @@ define :mongodb_instance,
 
     shard_nodes = search(
       :node,
-      "mongodb_cluster_name:#{new_resource.cluster_name} AND \
+      "mongodb_clusterName:#{new_resource.clusterName} AND \
        mongodb_is_shard:true AND \
        chef_environment:#{node.chef_environment}"
     )
