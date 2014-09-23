@@ -62,7 +62,7 @@ Basically all settings defined in the Configuration File Options documentation p
 ### Sharding and replication attributes
 
 * `node['mongodb']['config']['replSet']` - Define name of replicaset
-* `node[:mongodb][:cluster_name]` - Name of the cluster, all members of the cluster must
+* `node[:mongodb][:clusterName]` - Name of the cluster, all members of the cluster must
     reference to the same name, as this name is used internally to identify all
     members of a cluster.
 * `node[:mongodb][:shard_name]` - Name of a shard, default is "default"
@@ -165,14 +165,14 @@ The result is a new system service with
 ### Replicasets
 
 Add `mongodb::replicaset` (instead of `mongodb::default`) to the node's run_list. Also choose a name for your
-replicaset cluster and set the value of `node[:mongodb][:cluster_name]` for each
+replicaset cluster and set the value of `node[:mongodb][:clusterName]` for each
 member to this name.
 
 ### Sharding
 
 You need a few more components, but the idea is the same: identification of the
 members with their different internal roles (mongos, configserver, etc.) is done via
-the `node[:mongodb][:cluster_name]` and `node[:mongodb][:shard_name]` attributes.
+the `node[:mongodb][:clusterName]` and `node[:mongodb][:shard_name]` attributes.
 
 Let's have a look at a simple sharding setup, consisting of two shard servers, one
 config server and one mongos.

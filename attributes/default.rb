@@ -19,7 +19,7 @@
 
 # cluster identifier
 default[:mongodb][:client_roles] = []
-default[:mongodb][:cluster_name] = nil
+default[:mongodb][:clusterName] = nil
 default[:mongodb][:shard_name] = 'default'
 
 # replica options
@@ -58,7 +58,7 @@ default[:mongodb][:instance_name] = 'mongodb'
 # this option can be "distro" or "mongodb-org"
 default[:mongodb][:install_method] = 'distro'
 
-default[:mongodb][:is_replicaset] = nil
+default[:mongodb][:isReplicaset] = nil
 default[:mongodb][:is_shard] = nil
 default[:mongodb][:is_configserver] = nil
 
