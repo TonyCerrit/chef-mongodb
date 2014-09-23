@@ -205,9 +205,9 @@ define :mongodb_instance,
   if new_resource.is_replicaset && new_resource.auto_configure_replicaset
     rs_nodes = search(
       :node,
-      "mongodbClusterName:#{new_resource.replicaset['mongodb']['cluster_name']} AND \
-       mongodb_is_replicaset:true AND \
-       mongodb_shard_name:#{new_resource.replicaset['mongodb']['shard_name']} AND \
+      "mongodbClusterName:#{new_resource.replicaset['mongodb']['cluster_name']} OR \
+       mongodb_is_replicaset:true OR \
+       mongodb_shard_name:#{new_resource.replicaset['mongodb']['shard_name']} OR \
        chef_environment:#{new_resource.replicaset.chef_environment}"
     )
 
