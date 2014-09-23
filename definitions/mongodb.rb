@@ -201,12 +201,12 @@ define :mongodb_instance,
     ignore_failure true if new_resource.name == 'mongodb'
   end
 
-  # replicaset
-  if new_resource.isReplicaset && new_resource.auto_configure_replicaset
-    rs_nodes = search(:node, "mongodb_clusterName:#{new_resource.replicaset['mongodb']['clusterName']}",
-       "mongodb_isReplicaset:true")
-       # "mongodb_shardName:#{new_resource.replicaset['mongodb']['shardName']}",
-       # "chef_environment:#{new_resource.replicaset.chef_environment}"
+     # replicaset
+    if new_resource.isReplicaset && new_resource.auto_configure_replicaset
+      rs_nodes = search(:node, "mongodb_clusterName:#{new_resource.replicaset['mongodb']['clusterName']}",
+      "mongodb_isReplicaset:true")
+      # mongodb_shardName:#{new_resource.replicaset['mongodb']['shardName']} AND \
+      # chef_environment:#{new_resource.replicaset.chef_environment}"
 
     ruby_block 'config_replicaset' do
       block do
