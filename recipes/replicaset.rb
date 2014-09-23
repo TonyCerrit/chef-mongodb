@@ -23,7 +23,7 @@ node.set['mongodb']['clusterName'] = node['mongodb']['clusterName']
 include_recipe 'mongodb::install'
 include_recipe 'mongodb::mongo_gem'
 
-unless node['mongodb']['isShard']
+unless node['mongodb']['is_shard']
   mongodb_instance node['mongodb']['instance_name'] do
     mongodb_type 'mongod'
     port         node['mongodb']['config']['port']

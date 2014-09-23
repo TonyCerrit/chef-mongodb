@@ -19,7 +19,7 @@
 # limitations under the License.
 #
 
-node.set['mongodb']['isShard'] = true
+node.set['mongodb']['is_shard'] = true
 node.set['mongodb']['shardName'] = node['mongodb']['shardName']
 node.set['mongodb']['isReplicaset'] = node['mongodb']['isReplicaset']
 node.set['mongodb']['clusterName'] = node['mongodb']['clusterName']

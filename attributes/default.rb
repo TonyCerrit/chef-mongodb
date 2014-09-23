@@ -59,7 +59,7 @@ default[:mongodb][:instance_name] = 'mongodb'
 default[:mongodb][:install_method] = 'distro'
 
 default[:mongodb][:isReplicaset] = nil
-default[:mongodb][:isShard] = nil
+default[:mongodb][:is_shard] = nil
 default[:mongodb][:is_configserver] = nil
 
 default[:mongodb][:reload_action] = 'restart' # or "nothing"
