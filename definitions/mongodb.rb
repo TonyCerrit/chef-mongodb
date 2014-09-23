@@ -208,6 +208,7 @@ define :mongodb_instance,
       # mongodb_shardName:#{new_resource.replicaset['mongodb']['shardName']} AND \
       # chef_environment:#{new_resource.replicaset.chef_environment}"
 
+
     ruby_block 'config_replicaset' do
       block do
         MongoDB.configure_replicaset(new_resource.replicaset, replicaset_name, rs_nodes) unless new_resource.replicaset.nil?
