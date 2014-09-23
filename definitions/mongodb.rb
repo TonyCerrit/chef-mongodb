@@ -72,7 +72,7 @@ define :mongodb_instance,
   new_resource.init_dir                   = node['mongodb']['init_dir']
   new_resource.init_script_template       = node['mongodb']['init_script_template']
   new_resource.isReplicaset              = node['mongodb']['isReplicaset']
-  new_resource.is_shard                   = node['mongodb']['is_shard']
+  new_resource.isShard                   = node['mongodb']['isShard']
   new_resource.is_configserver            = node['mongodb']['is_configserver']
   new_resource.is_mongos                  = node['mongodb']['is_mongos']
   new_resource.mongodb_group              = node['mongodb']['group']
@@ -102,7 +102,7 @@ define :mongodb_instance,
     if new_resource.replicaset_name
       # trust a predefined replicaset name
       replicaset_name = new_resource.replicaset_name
-    elsif new_resource.is_shard && new_resource.shardName
+    elsif new_resource.isShard && new_resource.shardName
       # for replicated shards we autogenerate
       # the replicaset name for each shard
       replicaset_name = "rs_#{new_resource.shardName}"
@@ -230,7 +230,7 @@ define :mongodb_instance,
     shard_nodes = search(
       :node,
       "mongodb_clusterName:#{new_resource.clusterName} AND \
-       mongodb_is_shard:true AND \
+       mongodb_isShard:true AND \
        chef_environment:#{node.chef_environment}"
     )
 
