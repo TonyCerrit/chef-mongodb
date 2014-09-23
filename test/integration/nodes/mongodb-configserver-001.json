@@ -12,7 +12,7 @@
       "cluster_name": "default",
       "is_configserver": "true"
     },
-    "mongodbClusterName": "default",
+    "mongodb_cluster_name": "default",
     "mongodb_is_configserver": "true"
   },
   "chef_type": "node",
@@ -21,10 +21,10 @@
       "cluster_name": "default",
       "is_configserver": "true"
     },
-    "mongodbClusterName": "default",
+    "mongodb_cluster_name": "default",
     "mongodb_is_configserver": "true"
   },
-  "mongodbClusterName": "default",
+  "mongodb_cluster_name": "default",
   "mongodb_is_configserver": "true",
   "override": {
   },
