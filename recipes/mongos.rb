@@ -32,7 +32,7 @@ end
 
 configsrvs = search(
   :node,
-  "mongodb_cluster_name:#{node['mongodb']['cluster_name']} AND \
+  "mongodbClusterName:#{node['mongodb']['cluster_name']} AND \
    mongodb_is_configserver:true AND \
    chef_environment:#{node.chef_environment}"
 )
