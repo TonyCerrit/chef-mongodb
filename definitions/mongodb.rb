@@ -205,10 +205,10 @@ define :mongodb_instance,
   if new_resource.is_replicaset && new_resource.auto_configure_replicaset
     rs_nodes = search(
       :node,
-      "mongodb_cluster_name:#{new_resource.cluster_name} AND \
-       mongodb_is_replicaset:true AND \
-       mongodb_shard_name:#{new_resource.shard_name} AND \
-       chef_environment:#{node.chef_environment}"
+      "mongodb_cluster_name:#{new_resource.cluster_name}",
+       "mongodb_is_replicaset:true",
+       "mongodb_shard_name:#{new_resource.shard_name}",
+       "chef_environment:#{node.chef_environment}"
     )
 
     ruby_block 'config_replicaset' do
