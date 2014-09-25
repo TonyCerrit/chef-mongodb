@@ -206,7 +206,7 @@ define :mongodb_instance,
     rs_nodes = search(
       :node,
       "mongodb_clusterName:#{new_resource.clusterName} AND \
-       mongodb_isReplicaset:true) AND \
+       mongodb_isReplicaset:true AND \
        mongodb_shardName:#{new_resource.shardName} AND \
        chef_environment:#{node.chef_environment}"
        )
