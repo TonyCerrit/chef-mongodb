@@ -62,10 +62,10 @@ Basically all settings defined in the Configuration File Options documentation p
 ### Sharding and replication attributes
 
 * `node['mongodb']['config']['replSet']` - Define name of replicaset
-* `node[:mongodb][:cluster_name]` - Name of the cluster, all members of the cluster must
+* `node[:mongodb][:clusterName]` - Name of the cluster, all members of the cluster must
     reference to the same name, as this name is used internally to identify all
     members of a cluster.
-* `node[:mongodb][:shard_name]` - Name of a shard, default is "default"
+* `node[:mongodb][:shardName]` - Name of a shard, default is "default"
 * `node['mongodb']['sharded_collections']` - Define which collections are sharded
 * `node[:mongodb][:replica_arbiter_only]` - Set to true to make node an [arbiter](http://docs.mongodb.org/manual/reference/replica-configuration/#local.system.replset.members[n].arbiterOnly).
 * `node[:mongodb][:replica_build_indexes]` - Set to false to omit [index creation](http://docs.mongodb.org/manual/reference/replica-configuration/#local.system.replset.members[n].buildIndexes).
@@ -165,20 +165,20 @@ The result is a new system service with
 ### Replicasets
 
 Add `mongodb::replicaset` (instead of `mongodb::default`) to the node's run_list. Also choose a name for your
-replicaset cluster and set the value of `node[:mongodb][:cluster_name]` for each
+replicaset cluster and set the value of `node[:mongodb][:clusterName]` for each
 member to this name.
 
 ### Sharding
 
 You need a few more components, but the idea is the same: identification of the
 members with their different internal roles (mongos, configserver, etc.) is done via
-the `node[:mongodb][:cluster_name]` and `node[:mongodb][:shard_name]` attributes.
+the `node[:mongodb][:clusterName]` and `node[:mongodb][:shardName]` attributes.
 
 Let's have a look at a simple sharding setup, consisting of two shard servers, one
 config server and one mongos.
 
 First we would like to configure the two shards. For doing so, just use
-`mongodb::shard` in the node's run_list and define a unique `mongodb[:shard_name]`
+`mongodb::shard` in the node's run_list and define a unique `mongodb[:shardName]`
 for each of these two nodes, say "shard1" and "shard2".
 
 Then configure a node to act as a config server - by using the `mongodb::configserver`

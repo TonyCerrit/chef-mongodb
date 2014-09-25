@@ -20,8 +20,8 @@
 #
 
 node.set['mongodb']['is_configserver'] = true
-node.set['mongodb']['cluster_name'] = node['mongodb']['cluster_name']
-node.set['mongodb']['shard_name'] = node['mongodb']['shard_name']
+node.set['mongodb']['clusterName'] = node['mongodb']['clusterName']
+node.set['mongodb']['shardName'] = node['mongodb']['shardName']
 
 include_recipe 'mongodb::install'
 

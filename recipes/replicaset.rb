@@ -17,8 +17,8 @@
 # limitations under the License.
 #
 
-node.set['mongodb']['is_replicaset'] = true
-node.set['mongodb']['cluster_name'] = node['mongodb']['cluster_name']
+node.set['mongodb']['isReplicaset'] = true
+node.set['mongodb']['clusterName'] = node['mongodb']['clusterName']
 
 include_recipe 'mongodb::install'
 include_recipe 'mongodb::mongo_gem'

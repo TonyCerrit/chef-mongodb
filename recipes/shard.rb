@@ -20,9 +20,9 @@
 #
 
 node.set['mongodb']['is_shard'] = true
-node.set['mongodb']['shard_name'] = node['mongodb']['shard_name']
-node.set['mongodb']['is_replicaset'] = node['mongodb']['is_replicaset']
-node.set['mongodb']['cluster_name'] = node['mongodb']['cluster_name']
+node.set['mongodb']['shardName'] = node['mongodb']['shardName']
+node.set['mongodb']['isReplicaset'] = node['mongodb']['isReplicaset']
+node.set['mongodb']['clusterName'] = node['mongodb']['clusterName']
 
 include_recipe 'mongodb::install'
 
@@ -34,7 +34,7 @@ mongodb_instance node['mongodb']['instance_name'] do
   port         node['mongodb']['config']['port']
   logpath      node['mongodb']['config']['logpath']
   dbpath       node['mongodb']['config']['dbpath']
-  replicaset   node if node['mongodb']['is_replicaset']
+  replicaset   node if node['mongodb']['isReplicaset']
   enable_rest  node['mongodb']['config']['rest']
   smallfiles   node['mongodb']['config']['smallfiles']
 end

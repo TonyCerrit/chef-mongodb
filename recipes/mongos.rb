@@ -20,7 +20,7 @@
 #
 
 node.set['mongodb']['is_mongos'] = true
-node.set['mongodb']['shard_name'] = node['mongodb']['shard_name']
+node.set['mongodb']['shardName'] = node['mongodb']['shardName']
 node.override['mongodb']['instance_name'] = 'mongos'
 
 include_recipe 'mongodb::install'
@@ -32,7 +32,7 @@ end
 
 configsrvs = search(
   :node,
-  "mongodb_cluster_name:#{node['mongodb']['cluster_name']} AND \
+  "mongodb_clusterName:#{node['mongodb']['clusterName']} AND \
    mongodb_is_configserver:true AND \
    chef_environment:#{node.chef_environment}"
 )

@@ -66,7 +66,7 @@ suites:
   - "recipe[mongodb::replicaset]"
   attributes:
     mongodb:
-      cluster_name: kitchen
+      clusterName: kitchen
       config:
         replSet: kitchen
   excludes:
@@ -83,7 +83,7 @@ suites:
   - "recipe[mongodb::mongos]"
   attributes:
     mongodb:
-      cluster_name: default
+      clusterName: default
       config:
         configdb: my_configserver
 
